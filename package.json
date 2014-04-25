@@ -1,0 +1,24 @@
+{
+  "name": "hapi-logger",
+  "version": "0.0.0",
+  "description": "a simple wrapper for hapi logging",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bleupen/hapi-logger"
+  },
+  "author": "Brad Leupen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bleupen/hapi-logger/issues"
+  },
+  "homepage": "https://github.com/bleupen/hapi-logger",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "sinon-chai": "^2.5.0",
+    "sinon": "^1.9.1"
+  }
+}
