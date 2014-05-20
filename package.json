@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/bleupen/hapi-logger",
   "devDependencies": {
-    "chai": "^1.9.1",
-    "sinon-chai": "^2.5.0",
-    "sinon": "^1.9.1"
+    "chai": "^1.9",
+    "sinon-chai": "^2.5",
+    "sinon": "^1.9"
   }
 }
