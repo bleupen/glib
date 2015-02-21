@@ -72,7 +72,7 @@ describe('Logger', function () {
         var logger = new Logger(['tag1', 'tag2']);
         var log = sinon.spy();
         logger.log = log;
-        logger.info('extra', 'Test');
+        logger.info(['extra'], 'Test');
         expect(log).to.have.been.calledWith(['tag1', 'tag2', 'extra', 'info'], 'Test');
 
         logger.info(['extra1', 'extra2'], 'Test');
@@ -99,5 +99,21 @@ describe('Logger', function () {
         expect(next).to.have.been.calledOnce;
         logger.info('Test');
         expect(log).to.have.been.calledWith(['tag1', 'tag2', 'info'], 'Test');
+    });
+
+    it('should format the log string without extra tags', function () {
+        var logger = new Logger(['tag1', 'tag2']);
+        var log = sinon.spy();
+        logger.log = log;
+        logger.info('Who is an awesome person? %s are', 'YOU');
+        log.should.have.been.calledWith(['tag1', 'tag2', 'info'], 'Who is an awesome person? YOU are');
+    });
+
+    it('should format the log string with extra tags', function () {
+        var logger = new Logger(['tag1', 'tag2']);
+        var log = sinon.spy();
+        logger.log = log;
+        logger.info(['tag3'], 'Who is an awesome person? %s are', 'YOU');
+        log.should.have.been.calledWith(['tag1', 'tag2', 'tag3', 'info'], 'Who is an awesome person? YOU are');
     });
 });
