@@ -1,7 +1,8 @@
 var chai = require('chai');
 var should = chai.should();
 var expect = chai.expect;
-var Logger = require('../lib/');
+var plugin = require('../lib');
+var Logger = plugin.Logger;
 var sinon = require('sinon');
 chai.use(require('sinon-chai'));
 
@@ -79,14 +80,14 @@ describe('Logger', function () {
     });
 
     it('should have a regsiter function', function () {
-        Logger.should.have.haveOwnProperty('register');
-        Logger.register.should.be.a('function');
+        plugin.should.have.haveOwnProperty('register');
+        plugin.register.should.be.a('function');
     });
 
     it('should delegate to the plugins logger when registered as a hapi plugin', function () {
         var logger = new Logger(['tag1', 'tag2']);
         var log = sinon.spy();
-        var plugin = {
+        var server = {
             log: log
         };
 
@@ -94,7 +95,7 @@ describe('Logger', function () {
         expect(log).not.to.have.been.called;
 
         var next = sinon.spy();
-        Logger.register(plugin, {}, next);
+        plugin.register(server, {}, next);
         expect(next).to.have.been.calledOnce;
         logger.info('Test');
         expect(log).to.have.been.calledWith(['tag1', 'tag2', 'info'], 'Test');
