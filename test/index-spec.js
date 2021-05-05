@@ -116,4 +116,11 @@ describe('Logger', function () {
         logger.info(['tag3'], 'Who is an awesome person? %s are', 'YOU');
         log.should.have.been.calledWith(['tag1', 'tag2', 'tag3', 'info'], 'Who is an awesome person? YOU are');
     });
+
+    it('should create a logger with an id tag', async () => {
+        const logger = new Logger(['tag1']);
+        const logger2 = logger.id('my-logger');
+        logger2.tags.should.deep.equal(['tag1', 'id:my-logger']);
+        logger2.should.not.equal(logger);
+    });
 });
