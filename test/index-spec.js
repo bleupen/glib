@@ -123,4 +123,11 @@ describe('Logger', function () {
         logger2.tags.should.deep.equal(['tag1', 'id:my-logger']);
         logger2.should.not.equal(logger);
     });
+
+    it('should create a logger with a group tag', async () => {
+        const logger = new Logger(['tag1']);
+        const logger2 = logger.group('my-logger');
+        logger2.tags.should.deep.equal(['tag1', 'group:my-logger']);
+        logger2.should.not.equal(logger);
+    });
 });
